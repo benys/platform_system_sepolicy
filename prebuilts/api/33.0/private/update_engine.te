@@ -30,3 +30,8 @@ get_prop(update_engine, snapuserd_prop)
 # capex decompression
 allow update_engine apex_service:service_manager find;
 binder_call(update_engine, apexd)
+
+
+# Allow transition to backuptool domain
+allow update_engine self:process setexec;
+domain_trans(update_engine, otapreopt_chroot_exec, backuptool)
